@@ -1,0 +1,9 @@
+package com.audit.audit.auditRepo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.audit.audit.model.FormChange;
+
+public interface auditChangeRepo extends JpaRepository <FormChange,Integer>{
+	
+}
