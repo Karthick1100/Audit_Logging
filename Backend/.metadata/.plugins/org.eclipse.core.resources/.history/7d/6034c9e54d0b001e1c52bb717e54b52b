@@ -1,0 +1,34 @@
+package com.audit.audit.model;
+import java.io.Serializable;
+
+import javax.persistence.*;
+
+@Entity
+public class formChangeReceiver implements Serializable {
+	public formChangeReceiver(Form form, String changedBy) {
+		super();
+		this.form = form;
+		this.changedBy = changedBy;
+	}
+	
+	Form form;
+	public String changedBy;
+	
+	public Form getForm() {
+		return form;
+	}
+	public void setForm(Form form) {
+		this.form = form;
+	}
+	public String getChangedBy() {
+		return changedBy;
+	}
+	public void setChangedBy(String changedBy) {
+		this.changedBy = changedBy;
+	}
+	@Override
+	public String toString() {
+		return "formChangeReceiver [form=" + form + ", changedBy=" + changedBy + "]";
+	}
+	
+}

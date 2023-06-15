@@ -1,0 +1,29 @@
+package com.audit.audit.model;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import javax.persistence.*;
+
+@Entity
+public class Form implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(updatable = false, nullable = false)
+	public int formId;
+	public String firstName;
+	public String lastName;
+	public String email;
+	public String phone;
+	@Column(columnDefinition = "TEXT")
+	public String address;
+	public String gender;
+	public String dob;
+
+	
+	
+	
+	
+}
