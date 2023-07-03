@@ -1,9 +1,0 @@
-package com.audit.audit.model;
-import java.io.Serializable;
-
-import javax.persistence.*;
-
-@Entity
-public class formChangeReceiver implements Serializable {
-
-}

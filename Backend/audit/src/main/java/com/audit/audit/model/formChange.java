@@ -7,28 +7,26 @@ import javax.persistence.*;
 @Entity
 public class formChange implements Serializable {
 	public formChange() {}
-	public formChange(Long changeId, int formId, String changedAt, String changedBy, String form) {
+	public formChange(Long changeId, int formId, String changedAt, String changedBy) {
 		super();
 		this.changeId = changeId;
 		this.formId = formId;
 		this.changedAt = changedAt;
 		this.changedBy = changedBy;
-		this.form = form;
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO 	)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false)
 	public Long changeId;
 	public String changedAt;
 	public int formId;
 	public String changedBy;
-	@Column(columnDefinition = "CLOB")
-	public String form;
+	
 	
 	@Override
 	public String toString() {
 		return "formChange [changeId=" + changeId + ", formId=" + formId + ", changedAt=" + changedAt + ", changedBy="
-				+ changedBy + ", form=" + form + "]";
+				+ changedBy+"]";
 	}
 	public Long getChangeId() {
 		return changeId;
@@ -54,12 +52,4 @@ public class formChange implements Serializable {
 	public void setChangedBy(String changedBy) {
 		this.changedBy = changedBy;
 	}
-	public String getForm() {
-		return form;
-	}
-	public void setForm(String form) {
-		this.form = form;
-	}
-	
-	
 }

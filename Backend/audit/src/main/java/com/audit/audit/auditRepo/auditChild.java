@@ -1,0 +1,20 @@
+package com.audit.audit.auditRepo;
+
+import java.util.List;
+
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.audit.audit.model.formChild;
+
+@Repository
+@Qualifier("ach")
+public interface auditChild extends JpaRepository<formChild, Long>{
+	List<formChild> findFormChildByColumnName(String columnName);
+	List<formChild> findFormChildByChangeId(Long changeId);
+	@Transactional
+	void deleteFormChildByChangeId(Long changeId);
+}

@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"
+      ><img
+        src="https://www.freepnglogos.com/uploads/citibank-png-logo/skysight-motion-cinema-citibank-png-logo-20.png"
+        width="80"
+        height="50"
+        alt="skysight motion cinema citibank png logo"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"></li>
+      </ul>
+      <!-- <form
+          class="d-flex"
+          #searchForm="ngForm"
+          (ngSubmit)="searchBar(searchForm.value)"
+        >
+          <input
+            class="form-control me-2"
+            ngModel
+            autocomplete="off"
+            name="searchText"
+            (ngModelChange)="searchBar(searchForm.value)"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form> -->
+    </div>
+  </div>
+</nav>
+
+<ag-grid-angular
+    style="height: 100vh; width: 100%"
+    class="ag-theme-alpine"
+    [rowData]="rowData"
+    [columnDefs]="colDefs"
+    
+    [animateRows]="true"
+    [enableRangeSelection]="true"
+    [editType]="'fullRow'"
+    
+    suppressClickEdit
+  >
+  </ag-grid-angular>
