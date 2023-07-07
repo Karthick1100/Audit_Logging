@@ -6,6 +6,9 @@ import { FormServiceService } from '../form-service.service';
 import { ColDef } from 'ag-grid-community';
 import Form from '../models/Form';
 import { Router } from '@angular/router';
+import * as $ from 'jquery';
+
+
 
 @Component({
   selector: 'app-home',
@@ -52,8 +55,6 @@ export class HomeComponent {
   
   constructor(fs: FormServiceService,public router:Router) {
     this.fs = fs;
-    
-    
   }
 
   ngOnInit(): void {
@@ -76,16 +77,16 @@ export class HomeComponent {
       {
         field: 'action',
         cellRenderer: rowEditComponent,
-
+        width:300,
         cellRendererParams: {
           callback: this.onOpenModal.bind(this),
         },
-
         suppressNavigable: true,
         suppressCellFlash: true,
         cellStyle: { border: 'none' },
       },
     ];
+    console.log($);
   }
 
   public getAllForm(): void {
@@ -146,7 +147,7 @@ export class HomeComponent {
           console.log(error.message);
         }
       );
-    alert('Your form has been added successfully!');
+      (<any>$('.alert')).alert();
     document.getElementById('add-employee-form')?.click();
   }
 
@@ -160,7 +161,7 @@ export class HomeComponent {
         console.log(error);
       }
     );
-    alert('Your form has been updated successfully!');
+    (<any>$('.alert')).alert();
     document.getElementById('edit-employee-form')?.click();
     this.getAllForm();
   }

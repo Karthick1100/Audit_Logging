@@ -21,6 +21,7 @@ import Form from './models/Form';
       (click)="onClick('delete')"
       data-action-type="remove"
       class="btn btn-danger"
+      style="margin-right:4px ;"
     >
       Delete
     </button>
@@ -29,7 +30,7 @@ import Form from './models/Form';
       (click)="onClick('auditLog')"
       data-action-type="view"
       class="btn btn-dark "
-      style="margin-right:4px ;"
+      
     >
       Audit Log
     </button>`,

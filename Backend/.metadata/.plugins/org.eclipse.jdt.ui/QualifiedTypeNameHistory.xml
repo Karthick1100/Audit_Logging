@@ -43,11 +43,12 @@
     <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Qualifier"/>
     <fullyQualifiedTypeName name="com.audit.audit.auditRepo.auditChild"/>
-    <fullyQualifiedTypeName name="com.audit.audit.model.formChild"/>
     <fullyQualifiedTypeName name="org.graalvm.compiler.core.common.Fields"/>
     <fullyQualifiedTypeName name="java.lang.reflect.Method"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
     <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.audit.audit.model.formChild"/>
 </qualifiedTypeNameHistroy>

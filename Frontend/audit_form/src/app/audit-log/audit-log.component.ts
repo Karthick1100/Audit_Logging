@@ -13,12 +13,9 @@ export class AuditLogComponent implements OnInit {
 
   rowData:any[]=[];
   colDefs:ColDef[]=[];
-
   fs:FormServiceService;
   frmId:Number=0;
-
-  
- 
+  defaultColDef: ColDef = { sortable: true, filter: true };
 
   constructor(public router:Router, fs:FormServiceService) {
     this.fs=fs;
@@ -26,18 +23,13 @@ export class AuditLogComponent implements OnInit {
     this.getAuditDetails();
   }
 
-  
-
   ngOnInit(): void {
     this.colDefs=[
-      {field:'changeId',width:125},
-      {field:'columnName'},
-      {field:'oldValue'},
-      {field:'newValue'}
+      {field:'changeId',flex:1},
+      {field:'columnName',flex:3},
+      {field:'oldValue',flex:5},
+      {field:'newValue',flex:5}
     ]
-   
-
-   
   }
 
   getAuditDetails():void{
