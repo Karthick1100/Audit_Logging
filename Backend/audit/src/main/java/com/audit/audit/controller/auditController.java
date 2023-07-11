@@ -93,4 +93,19 @@ public class auditController {
 			}
 			return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
 		}
+		
+		@GetMapping("auditLog/{id}/{from}/{to}")
+		public ResponseEntity<List<formChild>> auditLog(@PathVariable("id") int id,@PathVariable("from") String from,@PathVariable("to") String to){
+			try {
+				List<formChild> fc=as.getAuditLogFromTo(id,from,to);
+				if(fc==null) {
+					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+				}
+				return new ResponseEntity<> (fc,HttpStatus.OK);
+			}
+			catch(Exception e){
+				System.out.println(e);
+			}
+			return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+		}
 }

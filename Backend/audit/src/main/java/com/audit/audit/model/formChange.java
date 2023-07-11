@@ -1,13 +1,14 @@
 package com.audit.audit.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
 @Entity
 public class formChange implements Serializable {
 	public formChange() {}
-	public formChange(Long changeId, int formId, String changedAt, String changedBy) {
+	public formChange(Long changeId, int formId, LocalDateTime changedAt, String changedBy) {
 		super();
 		this.changeId = changeId;
 		this.formId = formId;
@@ -18,8 +19,9 @@ public class formChange implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false)
 	public Long changeId;
-	public String changedAt;
+	public LocalDateTime changedAt;
 	public int formId;
+	@Column(length=100)
 	public String changedBy;
 	
 	
@@ -40,10 +42,10 @@ public class formChange implements Serializable {
 	public void setFormId(int formId) {
 		this.formId = formId;
 	}
-	public String getChangedAt() {
+	public LocalDateTime getChangedAt() {
 		return changedAt;
 	}
-	public void setChangedAt(String changedAt) {
+	public void setChangedAt(LocalDateTime changedAt) {
 		this.changedAt = changedAt;
 	}
 	public String getChangedBy() {

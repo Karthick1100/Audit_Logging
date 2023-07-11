@@ -6,7 +6,8 @@ import { FormServiceService } from '../form-service.service';
 import { ColDef } from 'ag-grid-community';
 import Form from '../models/Form';
 import { Router } from '@angular/router';
-import * as $ from 'jquery';
+import { ToastrService } from 'ngx-toastr';
+
 
 
 
@@ -53,7 +54,7 @@ export class HomeComponent {
   };
 
   
-  constructor(fs: FormServiceService,public router:Router) {
+  constructor(fs: FormServiceService,public router:Router,public toastr:ToastrService) {
     this.fs = fs;
   }
 
@@ -86,7 +87,7 @@ export class HomeComponent {
         cellStyle: { border: 'none' },
       },
     ];
-    console.log($);
+   
   }
 
   public getAllForm(): void {
@@ -125,6 +126,7 @@ export class HomeComponent {
   }
 
   public onAddEmployee(Form: Form): void {
+    console.log(Form.dob);
     var lastEditedBy = prompt('Enter your username');
     this.fs
       .addForm({
@@ -136,7 +138,7 @@ export class HomeComponent {
         gender: Form.gender!,
         phone: Form.phone!,
         lastEditedBy: lastEditedBy!,
-        dob: Form.dob.toString()!,
+        dob: Form.dob!.toString(),
         formId: 100,
       })
       .subscribe(
@@ -147,8 +149,9 @@ export class HomeComponent {
           console.log(error.message);
         }
       );
-      (<any>$('.alert')).alert();
-    document.getElementById('add-employee-form')?.click();
+      document.getElementById('add-employee-form')?.click();
+      this.toastr.success('Employee has been added successfully!','Employee added');
+      
   }
 
   public onEditEmployee(editedData: Form): void {
@@ -161,9 +164,10 @@ export class HomeComponent {
         console.log(error);
       }
     );
-    (<any>$('.alert')).alert();
+   
     document.getElementById('edit-employee-form')?.click();
     this.getAllForm();
+    this.toastr.success('Employee has been edited successfully!','Employee edited');
   }
 
   public onDeleteEmployee(deleteEmployeeId: Number): void {
@@ -175,6 +179,8 @@ export class HomeComponent {
         console.log(error);
       }
     );
+    this.toastr.error('Employee has been deleted successfully!','Employee deleted');
+    
   }
 
   public getFormById(id: Number): void {

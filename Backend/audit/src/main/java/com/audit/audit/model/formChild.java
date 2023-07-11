@@ -10,11 +10,13 @@ public class formChild implements Serializable{
 	@Column(nullable = false)
 	public Long id;
 	public Long changeId;
+	@Column(length=50)
 	public String columnName;
 	@Column(columnDefinition = "CLOB")
 	public String oldValue;
 	@Column(columnDefinition = "CLOB")
 	public String newValue;
+
 	
 	public formChild() {}
 	
@@ -25,6 +27,7 @@ public class formChild implements Serializable{
 		this.columnName = columnName;
 		this.oldValue = oldValue;
 		this.newValue = newValue;
+		
 	}
 	
 	

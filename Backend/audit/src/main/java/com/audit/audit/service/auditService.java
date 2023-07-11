@@ -2,6 +2,7 @@ package com.audit.audit.service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,7 +48,7 @@ public class auditService{
 		
 		//addingInFormChange--masterTable
 		formChange fc=new formChange();
-		fc.setChangedAt(LocalDateTime.now().toString());
+		fc.setChangedAt(LocalDateTime.now());
 		fc.setChangedBy(form.lastEditedBy);
 		fc.setFormId(frm.formId);
 		formChange fchId=ac.save(fc);
@@ -86,7 +87,7 @@ public class auditService{
 		
 		//updatingTheFormChanges
 		formChange fc=new formChange();
-		fc.setChangedAt(LocalDateTime.now().toString());
+		fc.setChangedAt(LocalDateTime.now());
 		fc.setChangedBy(form.lastEditedBy);
 		fc.setFormId(form.formId);
 		formChange fchId=ac.save(fc);
@@ -138,6 +139,24 @@ public class auditService{
 			totalList.addAll(ach.findFormChildByChangeId(fc.changeId));
 		}
 		return totalList;
+	}
+	
+	public List<formChild> getAuditLogFromTo(int id,String from,String to){
+		from=from+"T00:00:00";
+		to=to+"T00:00:00";
+	    DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+	    LocalDateTime fromDate = LocalDateTime.parse(from, formatter);
+	    LocalDateTime toDate = LocalDateTime.parse(to, formatter);
+	    System.out.println(fromDate+" "+toDate);
+		List<formChange> al=ac.findFormChangeByFormId(id);
+		List<formChild> totalList=new ArrayList<formChild>();
+		for(formChange fc:al){
+			if((fc.changedAt).isAfter(fromDate) && (fc.changedAt).isBefore(toDate)) {
+				totalList.addAll(ach.findFormChildByChangeId(fc.changeId));
+			}
+		}
+		return totalList;
+		
 	}
 	
 }

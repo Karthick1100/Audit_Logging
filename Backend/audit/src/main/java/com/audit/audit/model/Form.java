@@ -31,15 +31,22 @@ public class Form implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(updatable = false, nullable = false)
 	public int formId;
+	@Column(length = 80)
 	public String firstName;
+	@Column(length = 80)
 	public String lastName;
 	public String email;
+	@Column(length=14)
 	public String phone;
+	@Column(length=20)
 	public String jobTitle;
 	@Column(columnDefinition = "CLOB")
 	public String address;
+	@Column(length=10)
 	public String gender;
+	@Column(length=10)
 	public String dob;
+	@Column(length=100)
 	public String lastEditedBy;
 	public int getFormId() {
 		return formId;
