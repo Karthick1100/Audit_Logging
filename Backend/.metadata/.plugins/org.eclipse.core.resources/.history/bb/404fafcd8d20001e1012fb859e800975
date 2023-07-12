@@ -154,8 +154,8 @@ public class auditService{
 			if(((fc.changedAt).isAfter(fromDate) && (fc.changedAt).isBefore(toDate) ) ) {
 				totalList.addAll(ach.findFormChildByChangeId(fc.changeId));
 			}
-			if((fc.changedAt.toLocalDate()).isEqual(toDate.toLocalDate())||(fc.changedAt.toLocalDate()).isEqual(fromDate.toLocalDate())) {
-				System.out.println("Equal Date");
+			if((fc.changedAt).isEqual(toDate)||(fc.changedAt).isEqual(fromDate)) {
+				System.out.println("Equal Date")
 				totalList.addAll(ach.findFormChildByChangeId(fc.changeId));
 			}
 		}

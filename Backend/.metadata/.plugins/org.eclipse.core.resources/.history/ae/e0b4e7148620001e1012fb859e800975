@@ -151,11 +151,7 @@ public class auditService{
 		List<formChange> al=ac.findFormChangeByFormId(id);
 		List<formChild> totalList=new ArrayList<formChild>();
 		for(formChange fc:al){
-			if(((fc.changedAt).isAfter(fromDate) && (fc.changedAt).isBefore(toDate) ) ) {
-				totalList.addAll(ach.findFormChildByChangeId(fc.changeId));
-			}
-			if((fc.changedAt.toLocalDate()).isEqual(toDate.toLocalDate())||(fc.changedAt.toLocalDate()).isEqual(fromDate.toLocalDate())) {
-				System.out.println("Equal Date");
+			if(((fc.changedAt).isAfter(fromDate) && (fc.changedAt).isBefore(toDate) )||(fc.changedAt).isEqual(fromDate) ) {
 				totalList.addAll(ach.findFormChildByChangeId(fc.changeId));
 			}
 		}

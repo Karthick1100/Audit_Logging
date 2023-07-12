@@ -79,4 +79,10 @@ export class FormServiceService {
       `${this.apiServiceUrl}/audit/auditLog/${formId}`
     );
   }
+
+  public getFilteredAuditDet(formId:Number,from:String,to:String): Observable<formChild>{
+    return this.http.get<formChild>(
+      `${this.apiServiceUrl}/audit/auditLog/${formId}/${from}/${to}`
+    );
+  }
 }

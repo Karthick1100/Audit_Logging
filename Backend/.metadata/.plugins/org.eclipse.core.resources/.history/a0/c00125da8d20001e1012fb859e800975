@@ -35,7 +35,6 @@ public class Form implements Serializable {
 	public String firstName;
 	@Column(length = 80)
 	public String lastName;
-	@Column(length=100)
 	public String email;
 	@Column(length=14)
 	public String phone;

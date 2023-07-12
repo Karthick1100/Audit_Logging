@@ -22,23 +22,36 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item"></li>
       </ul>
-      <!-- <form
+      <form
           class="d-flex"
           #searchForm="ngForm"
-          (ngSubmit)="searchBar(searchForm.value)"
+          (ngSubmit)="getFilteredAuditDetails(searchForm.value)"
         >
+          <label for="from">From:</label>
           <input
-            class="form-control me-2"
+            class="form-control m-2"
             ngModel
             autocomplete="off"
-            name="searchText"
-            (ngModelChange)="searchBar(searchForm.value)"
-            type="search"
+            name="from"
+            type="date"
             placeholder="Search"
             aria-label="Search"
+            id="from"
+            
           />
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form> -->
+          <label for="to">To:</label>
+          <input
+            class="form-control m-2"
+            ngModel
+            autocomplete="off"
+            name="to"
+            type="date"
+            placeholder="Search"
+            aria-label="Search"
+            id="to"
+          />
+          <button class="btn btn-outline-success m-2" type="submit">Filter</button>
+        </form>
     </div>
   </div>
 </nav>
