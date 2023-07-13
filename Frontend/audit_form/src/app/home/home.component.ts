@@ -126,7 +126,7 @@ export class HomeComponent {
   }
 
   public onAddEmployee(Form: Form): void {
-    console.log(Form.dob);
+    
     var lastEditedBy = prompt('Enter your username');
     this.fs
       .addForm({
@@ -158,7 +158,7 @@ export class HomeComponent {
     var lastEditedBy = prompt('Enter your username');
     this.fs.updateForm(editedData, lastEditedBy!, this.frmId).subscribe(
       (value: Form) => {
-        return value;
+        this.getAllForm();
       },
       (error: HttpErrorResponse) => {
         console.log(error);
@@ -166,7 +166,6 @@ export class HomeComponent {
     );
    
     document.getElementById('edit-employee-form')?.click();
-    this.getAllForm();
     this.toastr.success('Employee has been edited successfully!','Employee edited');
   }
 

@@ -7,6 +7,9 @@ import javax.persistence.*;
 
 @Entity
 public class formChange implements Serializable {
+	
+
+
 	public formChange() {}
 	public formChange(Long changeId, int formId, LocalDateTime changedAt, String changedBy) {
 		super();
