@@ -20,10 +20,6 @@ public class auditController {
 		auditController(auditService as){
 			this.as=as;
 		}
-		@GetMapping("/forms/{page}")
-		public ResponseEntity<List<Form>> getPageForm(@PathVariable("page") int page){
-			return new ResponseEntity<>(as.getPageForms(page),HttpStatus.OK);		
-		}
 		
 		@GetMapping("/form")
 		public ResponseEntity<Form> getForm(@RequestParam(name = "formId",defaultValue ="22") int formId) {

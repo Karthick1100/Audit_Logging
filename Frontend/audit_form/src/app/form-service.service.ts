@@ -85,4 +85,9 @@ export class FormServiceService {
       `${this.apiServiceUrl}/audit/auditLog/${formId}/${from}/${to}`
     );
   }
+
+  public getPageForm(pageNumber:number):Observable<Form[]>{
+    return this.http.get<Form[]>(`${this.apiServiceUrl}/audit/forms/${pageNumber}`);
+
+  }
 }

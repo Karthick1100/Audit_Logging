@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.audit.audit.auditRepo.auditChange;
@@ -30,7 +29,7 @@ public class auditService{
 	
 	
 	
-	int pageSize = 5;
+	int pageSize = 3;
 	
 	
 
@@ -44,12 +43,7 @@ public class auditService{
 	
 	public List<Form> getPageForms(int page){
 		Pageable pageable = PageRequest.of(page, pageSize);
-		Page<Form> pag=ar.findAll(pageable);
-		List<Form> al=new ArrayList<Form>();
-		for(Form f:pag) {
-			al.add(f);
-		}
-		return al; 
+			return ar.findAll(pageable);
 	}
 	public Form addForm(Form form) {
 		//Saving the form in form table

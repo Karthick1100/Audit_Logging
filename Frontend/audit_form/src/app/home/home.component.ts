@@ -1,6 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-
 import { rowEditComponent } from '../row-edit.component';
 import { FormServiceService } from '../form-service.service';
 import { ColDef } from 'ag-grid-community';
@@ -8,25 +7,22 @@ import Form from '../models/Form';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent {
+
   public gridApi: any;
   public gridColumnApi: any;
-
   fs: FormServiceService;
   frmId: Number = 0;
   Forms: Form[] = [];
   rowData: any[] = [];
   colDefs: ColDef[] = [];
   defaultColDef: ColDef = { sortable: true, filter: true };
-
   editEmployee: Form = {
     formId: 0,
     firstName: '',
@@ -39,7 +35,6 @@ export class HomeComponent {
     jobTitle: '',
     lastEditedBy: '',
   };
-
   deleteEmployee: Form = {
     formId: 0,
     firstName: '',
@@ -52,14 +47,14 @@ export class HomeComponent {
     jobTitle: '',
     lastEditedBy: '',
   };
+  pageNumber:number=0;
 
-  
   constructor(fs: FormServiceService,public router:Router,public toastr:ToastrService) {
     this.fs = fs;
   }
 
   ngOnInit(): void {
-    this.getAllForm();
+    this.getFormByPage(0);
     this.colDefs = [
       {
         headerName: 'Row',
@@ -67,14 +62,14 @@ export class HomeComponent {
         valueGetter: 'node.rowIndex + 1',
         width: 30,
       },
-      { field: 'firstName' },
-      { field: 'lastName' },
-      { field: 'email' },
-      { field: 'phone' },
-      { field: 'address' },
-      { field: 'gender' },
-      { field: 'dob' },
-      { field: 'jobTitle' },
+      { field: 'firstName',flex:4,minWidth:150},
+      { field: 'lastName',flex:4,minWidth:150 },
+      { field: 'email',flex:5,minWidth:200 },
+      { field: 'phone',flex:5,minWidth:200 },
+      { field: 'address',flex:7,minWidth:300 },
+      { field: 'gender',flex:3,minWidth:100 },
+      { field: 'dob',flex:4,minWidth:150 },
+      { field: 'jobTitle',flex:4,minWidth:200 },
       {
         field: 'action',
         cellRenderer: rowEditComponent,
@@ -151,7 +146,6 @@ export class HomeComponent {
       );
       document.getElementById('add-employee-form')?.click();
       this.toastr.success('Employee has been added successfully!','Employee added');
-      
   }
 
   public onEditEmployee(editedData: Form): void {
@@ -178,7 +172,7 @@ export class HomeComponent {
         console.log(error);
       }
     );
-    this.toastr.error('Employee has been deleted successfully!','Employee deleted');
+    this.toastr.success('Employee has been deleted successfully!','Employee deleted');
     
   }
 
@@ -193,7 +187,25 @@ export class HomeComponent {
     );
   }
 
-  
+  public getFormByPage(pageNumber:number){
+    if(pageNumber<0){
+      this.pageNumber=0;
+      pageNumber=0;
+    }
+    this.fs.getPageForm(pageNumber).subscribe(
+    (value: Form[]) => {
+      
+      if(value.length==0){
+        this.pageNumber=pageNumber-1;
+        this.toastr.error("No page available","Failed")
+        return;
+      }
+      this.rowData=value;
+    },
+    (error: HttpErrorResponse) => {
+      console.log(error.message);
+    })
+  }
 
   onGridReady(params: any) {
     this.gridApi = params.api;

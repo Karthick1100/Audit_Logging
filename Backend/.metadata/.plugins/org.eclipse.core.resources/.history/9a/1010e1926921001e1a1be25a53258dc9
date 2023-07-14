@@ -30,7 +30,7 @@ public class auditService{
 	
 	
 	
-	int pageSize = 5;
+	int pageSize = 2;
 	
 	
 
@@ -44,12 +44,7 @@ public class auditService{
 	
 	public List<Form> getPageForms(int page){
 		Pageable pageable = PageRequest.of(page, pageSize);
-		Page<Form> pag=ar.findAll(pageable);
-		List<Form> al=new ArrayList<Form>();
-		for(Form f:pag) {
-			al.add(f);
-		}
-		return al; 
+			return (List<Form>) ar.findAll(pageable);
 	}
 	public Form addForm(Form form) {
 		//Saving the form in form table

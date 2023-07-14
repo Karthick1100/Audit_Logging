@@ -8,10 +8,9 @@ import java.util.List;
 import java.lang.reflect.Field;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.audit.audit.auditRepo.auditChange;
 import com.audit.audit.auditRepo.auditChild;
@@ -29,10 +28,11 @@ public class auditService{
 	auditChild ach;
 	
 	
-	
-	int pageSize = 5;
-	
-	
+	int page = 1;
+	int pageSize = 3;
+	PageRequest pageable = PageRequest.of(page, pageSize);
+	Page<Form> secondPageWithUpTo3Elements =
+	  ar.findAll(pageable);
 
 	@Autowired
 	auditService(@Qualifier("ar") auditRepo ar,@Qualifier("ac") auditChange ac,@Qualifier("ach") auditChild ach){
@@ -42,15 +42,7 @@ public class auditService{
 	}
 	
 	
-	public List<Form> getPageForms(int page){
-		Pageable pageable = PageRequest.of(page, pageSize);
-		Page<Form> pag=ar.findAll(pageable);
-		List<Form> al=new ArrayList<Form>();
-		for(Form f:pag) {
-			al.add(f);
-		}
-		return al; 
-	}
+	
 	public Form addForm(Form form) {
 		//Saving the form in form table
 		Form frm=ar.save(form);

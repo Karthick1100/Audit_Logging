@@ -1,7 +1,5 @@
-
-
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- BS Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"
         ><img
@@ -52,14 +50,8 @@
       </div>
     </div>
   </nav>
-  
-  <link
-    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-    rel="stylesheet"
-  />
-  
 
-  
+  <!-- AG Grid -->
   <div class="container" id="main-component">
     <ag-grid-angular
       style="height: 100vh; width: 100vw"
@@ -75,9 +67,27 @@
     >
     </ag-grid-angular>
   </div>
+
+  <!-- Pagination -->
+  <div style="display: flex; justify-content: space-between;" >
+
+    <div style="display: inline-block;" >
+      <form #gotoForm="ngForm" (ngSubmit)="getFormByPage(gotoForm.value.goto)">
+        <button class="btn btn-default" type="submit">Goto</button>
+        <input ngModel type="number" name="goto" id="goto" style="width: 35px;">
+      </form>
+    </div>
+
+    <div style="display: inline-block">
+      <ul class="pagination" >
+        <li class="page-item"><a type="button" class="page-link" (click)="pageNumber=pageNumber-1;getFormByPage(pageNumber)"  >Previous</a></li>
+        <li class="page-item"><a type="button" class="page-link" (click)="pageNumber=this.pageNumber;getFormByPage(pageNumber)" >{{pageNumber+1}}</a></li>
+        <li class="page-item"><a type="button" class="page-link" (click)="pageNumber=pageNumber+1;getFormByPage(pageNumber)"  >Next</a></li>
+      </ul>
+    </div>
+
+  </div>
   
-
-
   <!-- Add Employee Modal -->
   <div
     class="modal fade"
@@ -426,6 +436,3 @@
       </div>
     </div>
   </div>
-
-
-  

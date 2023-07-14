@@ -26,10 +26,10 @@ export class AuditLogComponent implements OnInit {
 
   ngOnInit(): void {
     this.colDefs=[
-      {field:'changeId',flex:1},
-      {field:'columnName',flex:3},
-      {field:'oldValue',flex:5},
-      {field:'newValue',flex:5}
+      {field:'changeId',flex:1,minWidth:100},
+      {field:'columnName',flex:3,minWidth:300},
+      {field:'oldValue',flex:5,minWidth:500},
+      {field:'newValue',flex:5,minWidth:500}
     ]
   }
 
@@ -38,7 +38,6 @@ export class AuditLogComponent implements OnInit {
       this.rowData=value;
     },(error:any)=>{console.log(error)})
   }
-
 
   getFilteredAuditDetails(val:any):void{
     const today: Date = new Date();
