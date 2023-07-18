@@ -14,7 +14,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class HomeComponent {
-
   public gridApi: any;
   public gridColumnApi: any;
   fs: FormServiceService;
@@ -48,6 +47,7 @@ export class HomeComponent {
     lastEditedBy: '',
   };
   pageNumber:number=0;
+  sliderNumber:number=0;
 
   constructor(fs: FormServiceService,public router:Router,public toastr:ToastrService) {
     this.fs = fs;
@@ -120,7 +120,7 @@ export class HomeComponent {
     button.click();
   }
 
-  public onAddEmployee(Form: Form): void {
+  public onAddEmployee(Form: Form,model:any): void {
     
     var lastEditedBy = prompt('Enter your username');
     this.fs
@@ -139,7 +139,7 @@ export class HomeComponent {
       .subscribe(
         (value: Form) => {
           this.getAllForm();
-          
+          model.reset()
         },
         (error: HttpErrorResponse) => {
           console.log(error.message);
@@ -193,19 +193,25 @@ export class HomeComponent {
       this.pageNumber=0;
       pageNumber=0;
     }
+    
     this.fs.getPageForm(pageNumber).subscribe(
     (value: Form[]) => {
       
       if(value.length==0){
-        this.pageNumber=pageNumber-1;
-        this.toastr.error("No page available","Failed")
+        this.pageNumber=this.sliderNumber;
+        this.toastr.error("No page available","Failed");
         return;
+      }
+      else{
+        this.sliderNumber=pageNumber;
+        this.pageNumber=pageNumber;
       }
       this.rowData=value;
     },
     (error: HttpErrorResponse) => {
       console.log(error.message);
     })
+    
   }
 
   onGridReady(params: any) {

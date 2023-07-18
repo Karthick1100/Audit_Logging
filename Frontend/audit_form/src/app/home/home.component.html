@@ -111,7 +111,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form #addForm="ngForm" (ngSubmit)="onAddEmployee(addForm.value)">
+          <form #addForm="ngForm" (ngSubmit)="onAddEmployee(addForm.value,addForm)">
             <div class="form-group">
               <label for="name">First Name</label>
               <input
