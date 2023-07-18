@@ -14,6 +14,7 @@ import com.audit.audit.model.formChange;
 @Qualifier("ac")
 public interface auditChange extends JpaRepository<formChange, Integer> {
 	List<formChange> findFormChangeByFormId(int id);
+	
 	@Transactional
 	void deleteFormChangeByFormId(int id);
 	

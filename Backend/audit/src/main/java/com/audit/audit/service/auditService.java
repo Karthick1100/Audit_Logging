@@ -80,15 +80,51 @@ public class auditService{
 			
 			ach.save(fch);
 		}
-		
 		return frm;
 	}
 
 	//to get the old value for updation
-	public String findOldval(String columnName) {
-		List<formChild> fch=ach.findFormChildByColumnName(columnName);
-		int lastIndex=fch.size()-1;
-		return fch.get(lastIndex).newValue;
+	public String findOldval(String columnName,int formId) {
+		List<formChange> fch=ac.findFormChangeByFormId(formId);
+		List<formChange> temp1=new ArrayList<formChange>();
+		List<formChange> temp2=new ArrayList<formChange>();
+		long maxChid=Long.MIN_VALUE;
+		for(formChange k:fch) {
+			if(k.getChangeId()>maxChid) {
+				maxChid=k.getChangeId();
+			}
+		}
+		for(formChange k:fch) {
+			
+			if(k.getChangeId()==maxChid) {
+				continue;
+			}
+			temp1.add(k);
+		}
+		
+		for(formChange k:temp1) {
+			System.out.println("change id: "+k.getChangeId());
+			
+			if(ach.findFormChildByColumnNameAndChangeId(columnName, k.getChangeId())==null) {
+				continue;
+			}
+			temp2.add(k);
+		}
+		System.out.println("Loop Ended");
+		
+		maxChid=Long.MIN_VALUE;
+		for(formChange k:temp2) {
+			if(k.getChangeId()>maxChid) {
+				maxChid=k.getChangeId();
+			}
+		}
+//		int lastIndex=fch.size()-1;
+//		long chId= fch.get(lastIndex).changeId;
+		return ach.findFormChildByColumnNameAndChangeId(columnName, maxChid).newValue;
+		
+//		List<formChild> fch=ach.findFormChildByColumnName(columnName);
+//		int lastIndex=fch.size()-1;
+//		return fch.get(lastIndex).newValue;
 	}
 	
 	public Form updateForm(Form form) {
@@ -106,7 +142,8 @@ public class auditService{
 			formChild fch=new formChild();
 			fch.setChangeId(fchId.getChangeId());
 			fch.setColumnName(fi.getName());
-			fch.setOldValue(this.findOldval(fi.getName()));
+			
+			fch.setOldValue(this.findOldval(fi.getName(),form.formId));
 			try {
 				fch.setNewValue(fi.get(form).toString());
 			} catch (IllegalArgumentException | IllegalAccessException e) {

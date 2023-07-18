@@ -139,6 +139,7 @@ export class HomeComponent {
       .subscribe(
         (value: Form) => {
           this.getAllForm();
+          
         },
         (error: HttpErrorResponse) => {
           console.log(error.message);

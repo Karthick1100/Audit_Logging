@@ -13,6 +13,7 @@ import com.audit.audit.model.formChild;
 @Repository
 @Qualifier("ach")
 public interface auditChild extends JpaRepository<formChild, Long>{
+	formChild findFormChildByColumnNameAndChangeId(String columnName,Long changeId);
 	List<formChild> findFormChildByColumnName(String columnName);
 	List<formChild> findFormChildByChangeId(Long changeId);
 	@Transactional

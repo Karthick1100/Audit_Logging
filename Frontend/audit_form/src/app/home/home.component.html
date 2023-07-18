@@ -72,9 +72,9 @@
   <div style="display: flex; justify-content: space-between;" >
 
     <div style="display: inline-block;" >
-      <form #gotoForm="ngForm" (ngSubmit)="getFormByPage(gotoForm.value.goto)">
-        <button class="btn btn-default" type="submit">Goto</button>
-        <input ngModel type="number" name="goto" id="goto" style="width: 35px;">
+      <form #gotoForm="ngForm" (ngSubmit)="getFormByPage(gotoForm.value.goto-1)">
+        <button class="btn btn-outline-success btn-sm" style="margin:5px;" type="submit">Goto</button>
+        <input ngModel type="number" name="goto" id="goto" style="width: 35px; height: 25px;">
       </form>
     </div>
 
